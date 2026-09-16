@@ -1,5 +1,7 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,23 +9,60 @@
     <title>Hospital Management System</title>
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f7fb;
             margin: 0;
             padding: 0;
+            color: #333;
+        }
+
+        .navigation {
+            background-color: #ffffff;
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .navigation a {
+            display: inline-block;
+            margin: 5px 8px;
+            padding: 8px 10px;
+            text-decoration: none;
+            color: #1976d2;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        .navigation a:hover {
+            background-color: #eaf3fc;
         }
 
         .header {
             background-color: #1976d2;
             color: white;
-            padding: 25px;
+            padding: 35px 20px;
             text-align: center;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+            font-size: 32px;
+        }
+
+        .header p {
+            margin: 0;
+            font-size: 17px;
         }
 
         .container {
             width: 90%;
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 30px auto;
         }
 
@@ -32,6 +71,17 @@
             padding: 25px;
             border-radius: 10px;
             margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .welcome h2 {
+            color: #1976d2;
+            margin-top: 0;
+        }
+
+        .welcome p {
+            color: #666;
+            line-height: 1.6;
         }
 
         .cards {
@@ -45,104 +95,68 @@
             padding: 25px;
             border-radius: 10px;
             text-align: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
         }
 
         .card h3 {
             color: #1976d2;
+            margin-bottom: 10px;
         }
 
         .card p {
             font-size: 32px;
             font-weight: bold;
+            color: #333;
+            margin: 10px 0 0;
         }
 
         .footer {
             text-align: center;
-            padding: 20px;
+            padding: 25px;
             margin-top: 40px;
             color: #777;
+        }
+
+        @media (max-width: 800px) {
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 25px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <div style="
-    background-color: #ffffff;
-    padding: 15px;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-">
+    <div class="navigation">
 
-    <a href="/" style="
-        margin: 0 10px;
-        text-decoration: none;
-        color: #1976d2;
-        font-weight: bold;
-    ">Dashboard</a>
+        <a href="/">Dashboard</a>
+        <a href="/patients">Patients</a>
+        <a href="/doctors">Doctors</a>
+        <a href="/appointments">Appointments</a>
+        <a href="/medical-history">Medical History</a>
+        <a href="/laboratory">Laboratory</a>
+        <a href="/pharmacy">Pharmacy</a>
+        <a href="/billing">Billing</a>
+        <a href="/staff">Staff</a>
+        <a href="/rooms">Rooms</a>
+        <a href="/reports">Reports</a>
 
-    <a href="/patients" style="
-        margin: 0 10px;
-        text-decoration: none;
-        color: #1976d2;
-    ">Patients</a>
-
-    <a href="/doctors" style="
-        margin: 0 10px;
-        text-decoration: none;
-        color: #1976d2;
-    ">Doctors</a>
-
-    <a href="/appointments" style="
-        margin: 0 10px;
-        text-decoration: none;
-        color: #1976d2;
-    ">Appointments</a>
-
-    <a href="/medical-history" style="
-        margin: 0 10px;
-        text-decoration: none;
-        color: #1976d2;
-    ">Medical History</a>
-
-    <a href="/laboratory" style="
-        margin: 0 10px;
-        text-decoration: none;
-        color: #1976d2;
-    ">Laboratory</a>
-
-    <a href="/pharmacy" style="
-        margin: 0 10px;
-        text-decoration: none;
-        color: #1976d2;
-    ">Pharmacy</a>
-
-    <a href="/billing" style="
-        margin: 0 10px;
-        text-decoration: none;
-        color: #1976d2;
-    ">Billing</a>
-
-    <a href="/staff" style="
-        margin: 0 10px;
-        text-decoration: none;
-        color: #1976d2;
-    ">Staff</a>
-
-    <a href="/rooms" style="
-        margin: 0 10px;
-        text-decoration: none;
-        color: #1976d2;
-    ">Rooms</a>
-
-    <a href="/reports" style="
-        margin: 0 10px;
-        text-decoration: none;
-        color: #1976d2;
-    ">Reports</a>
-
-</div>
+    </div>
 
     <div class="header">
         <h1>🏥 Hospital Management System</h1>
@@ -153,9 +167,11 @@
 
         <div class="welcome">
             <h2>Welcome to the Hospital Dashboard</h2>
+
             <p>
-                Manage patients, doctors, appointments, pharmacy,
-                laboratory, billing, rooms and reports.
+                Manage patients, doctors, appointments, medical history,
+                laboratory tests, pharmacy, billing, staff, rooms and reports
+                from one centralized hospital management system.
             </p>
         </div>
 
@@ -200,4 +216,5 @@
     </div>
 
 </body>
+
 </html>
