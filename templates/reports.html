@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reports - Hospital Management System</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f7fb;
+        }
+
+        header {
+            background-color: #1976d2;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: white;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #1976d2;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 90%;
+            margin: 30px auto;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .reports-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .report-card {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .report-card h3 {
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+
+        .report-card p {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .report-card span {
+            color: #777;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 18px;
+            background-color: #1976d2;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .back:hover {
+            background-color: #125ca1;
+        }
+
+        @media (max-width: 900px) {
+            .reports-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .reports-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 6px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Hospital Management System</h1>
+    <p>Hospital Reports</p>
+</header>
+
+<nav>
+    <a href="/">Dashboard</a>
+    <a href="/patients">Patients</a>
+    <a href="/doctors">Doctors</a>
+    <a href="/appointments">Appointments</a>
+    <a href="/medical-history">Medical History</a>
+    <a href="/laboratory">Laboratory</a>
+    <a href="/pharmacy">Pharmacy</a>
+    <a href="/billing">Billing</a>
+    <a href="/staff">Staff</a>
+    <a href="/rooms">Rooms</a>
+    <a href="/reports">Reports</a>
+</nav>
+
+<div class="container">
+
+    <h2>Hospital Reports</h2>
+
+    <div class="reports-grid">
+
+        <div class="report-card">
+            <h3>Patients</h3>
+            <p>{{ reports.patients }}</p>
+            <span>Total Registered Patients</span>
+        </div>
+
+        <div class="report-card">
+            <h3>Doctors</h3>
+            <p>{{ reports.doctors }}</p>
+            <span>Total Doctors</span>
+        </div>
+
+        <div class="report-card">
+            <h3>Appointments</h3>
+            <p>{{ reports.appointments }}</p>
+            <span>Total Appointments</span>
+        </div>
+
+        <div class="report-card">
+            <h3>Admissions</h3>
+            <p>{{ reports.admissions }}</p>
+            <span>Current Admissions</span>
+        </div>
+
+        <div class="report-card">
+            <h3>Medicines</h3>
+            <p>{{ reports.medicines }}</p>
+            <span>Total Medicines</span>
+        </div>
+
+        <div class="report-card">
+            <h3>Staff</h3>
+            <p>{{ reports.staff }}</p>
+            <span>Total Staff Members</span>
+        </div>
+
+        <div class="report-card">
+            <h3>Rooms</h3>
+            <p>{{ reports.rooms }}</p>
+            <span>Total Hospital Rooms</span>
+        </div>
+
+        <div class="report-card">
+            <h3>Pending Bills</h3>
+            <p>{{ reports.pending_bills }}</p>
+            <span>Unpaid Bills</span>
+        </div>
+
+        <div class="report-card">
+            <h3>Revenue</h3>
+            <p>₹{{ "%.2f"|format(reports.revenue) }}</p>
+            <span>Total Paid Revenue</span>
+        </div>
+
+    </div>
+
+    <a href="/" class="back">← Back to Dashboard</a>
+
+</div>
+
+</body>
+</html>
+

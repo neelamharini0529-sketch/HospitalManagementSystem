@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Appointments - Hospital Management System</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fb;
+            margin: 0;
+        }
+
+        .header {
+            background-color: #1976d2;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .navigation {
+            background-color: white;
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .navigation a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #1976d2;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1400px;
+            margin: 30px auto;
+        }
+
+        .content {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #1976d2;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-bottom: 15px;
+            padding: 10px 18px;
+            background-color: #1976d2;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .back-button:hover {
+            background-color: #125aa0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th {
+            background-color: #1976d2;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .status {
+            font-weight: bold;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 30px;
+            color: #777;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>🏥 Hospital Management System</h1>
+        <p>Appointment Management</p>
+    </div>
+
+
+    <div class="navigation">
+
+        <a href="/">Dashboard</a>
+
+        <a href="/patients">Patients</a>
+
+        <a href="/doctors">Doctors</a>
+
+        <a href="/appointments">Appointments</a>
+
+        <a href="/medical-history">Medical History</a>
+
+        <a href="/laboratory">Laboratory</a>
+
+        <a href="/pharmacy">Pharmacy</a>
+
+        <a href="/billing">Billing</a>
+
+        <a href="/staff">Staff</a>
+
+        <a href="/rooms">Rooms</a>
+
+        <a href="/reports">Reports</a>
+
+    </div>
+
+
+    <div class="container">
+
+        <div class="content">
+
+            <a href="/" class="back-button">
+                ← Back to Dashboard
+            </a>
+
+            <h2>Appointments</h2>
+
+
+            {% if appointments %}
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Patient</th>
+                        <th>Doctor</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Reason</th>
+                        <th>Status</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for appointment in appointments %}
+
+                    <tr>
+
+                        <td>{{ appointment[0] }}</td>
+
+                        <td>{{ appointment[1] }}</td>
+
+                        <td>{{ appointment[2] }}</td>
+
+                        <td>{{ appointment[3] }}</td>
+
+                        <td>{{ appointment[4] }}</td>
+
+                        <td>{{ appointment[5] or "—" }}</td>
+
+                        <td class="status">
+                            {{ appointment[6] }}
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+            {% else %}
+
+            <div class="no-data">
+                No appointments found.
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

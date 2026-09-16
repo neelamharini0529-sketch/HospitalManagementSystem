@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hospital Management System</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fb;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #1976d2;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 30px auto;
+        }
+
+        .welcome {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h3 {
+            color: #1976d2;
+        }
+
+        .card p {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div style="
+    background-color: #ffffff;
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+">
+
+    <a href="/" style="
+        margin: 0 10px;
+        text-decoration: none;
+        color: #1976d2;
+        font-weight: bold;
+    ">Dashboard</a>
+
+    <a href="/patients" style="
+        margin: 0 10px;
+        text-decoration: none;
+        color: #1976d2;
+    ">Patients</a>
+
+    <a href="/doctors" style="
+        margin: 0 10px;
+        text-decoration: none;
+        color: #1976d2;
+    ">Doctors</a>
+
+    <a href="/appointments" style="
+        margin: 0 10px;
+        text-decoration: none;
+        color: #1976d2;
+    ">Appointments</a>
+
+    <a href="/medical-history" style="
+        margin: 0 10px;
+        text-decoration: none;
+        color: #1976d2;
+    ">Medical History</a>
+
+    <a href="/laboratory" style="
+        margin: 0 10px;
+        text-decoration: none;
+        color: #1976d2;
+    ">Laboratory</a>
+
+    <a href="/pharmacy" style="
+        margin: 0 10px;
+        text-decoration: none;
+        color: #1976d2;
+    ">Pharmacy</a>
+
+    <a href="/billing" style="
+        margin: 0 10px;
+        text-decoration: none;
+        color: #1976d2;
+    ">Billing</a>
+
+    <a href="/staff" style="
+        margin: 0 10px;
+        text-decoration: none;
+        color: #1976d2;
+    ">Staff</a>
+
+    <a href="/rooms" style="
+        margin: 0 10px;
+        text-decoration: none;
+        color: #1976d2;
+    ">Rooms</a>
+
+    <a href="/reports" style="
+        margin: 0 10px;
+        text-decoration: none;
+        color: #1976d2;
+    ">Reports</a>
+
+</div>
+
+    <div class="header">
+        <h1>🏥 Hospital Management System</h1>
+        <p>Hospital Administration Portal</p>
+    </div>
+
+    <div class="container">
+
+        <div class="welcome">
+            <h2>Welcome to the Hospital Dashboard</h2>
+            <p>
+                Manage patients, doctors, appointments, pharmacy,
+                laboratory, billing, rooms and reports.
+            </p>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Patients</h3>
+                <p>{{ dashboard.patients }}</p>
+            </div>
+
+            <div class="card">
+                <h3>Doctors</h3>
+                <p>{{ dashboard.doctors }}</p>
+            </div>
+
+            <div class="card">
+                <h3>Appointments</h3>
+                <p>{{ dashboard.appointments }}</p>
+            </div>
+
+            <div class="card">
+                <h3>Admissions</h3>
+                <p>{{ dashboard.admissions }}</p>
+            </div>
+
+            <div class="card">
+                <h3>Medicines</h3>
+                <p>{{ dashboard.medicines }}</p>
+            </div>
+
+            <div class="card">
+                <h3>Pending Bills</h3>
+                <p>{{ dashboard.pending_bills }}</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Hospital Management System | Python + Flask + SQLite
+    </div>
+
+</body>
+</html>
