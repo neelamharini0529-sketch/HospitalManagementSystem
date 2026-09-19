@@ -8,201 +8,263 @@
     <title>Billing - Hospital Management System</title>
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
             background-color: #f4f7fb;
+            margin: 0;
+            padding: 0;
+            color: #333;
         }
 
-        header {
-            background-color: #1976d2;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-
-        nav {
+        .navigation {
             background-color: #ffffff;
             padding: 15px;
             text-align: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid #ddd;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
         }
 
-        nav a {
+        .navigation a {
+            display: inline-block;
+            margin: 5px 8px;
+            padding: 8px 10px;
             text-decoration: none;
             color: #1976d2;
-            margin: 0 12px;
             font-weight: bold;
+            border-radius: 5px;
         }
 
-        nav a:hover {
-            text-decoration: underline;
+        .navigation a:hover {
+            background-color: #eaf3fc;
+        }
+
+        .header {
+            background-color: #1976d2;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+        }
+
+        .header p {
+            margin: 0;
         }
 
         .container {
             width: 95%;
+            max-width: 1300px;
             margin: 30px auto;
         }
 
+        .content {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            overflow-x: auto;
+        }
+
         h2 {
-            color: #333;
-            margin-bottom: 20px;
+            color: #1976d2;
+            margin-top: 0;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            background-color: white;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            margin-top: 20px;
+            min-width: 1000px;
         }
 
         th {
             background-color: #1976d2;
             color: white;
             padding: 12px;
-            text-align: center;
+            text-align: left;
+            white-space: nowrap;
         }
 
         td {
             padding: 12px;
             border-bottom: 1px solid #ddd;
-            text-align: center;
+            white-space: nowrap;
         }
 
         tr:hover {
-            background-color: #f1f7ff;
+            background-color: #f5f5f5;
+        }
+
+        .status {
+            font-weight: bold;
         }
 
         .paid {
-            color: green;
-            font-weight: bold;
+            color: #2e7d32;
         }
 
         .pending {
-            color: #d97706;
-            font-weight: bold;
+            color: #ef6c00;
         }
 
-        .empty {
+        .no-data {
             text-align: center;
             padding: 30px;
             color: #777;
         }
 
-        .back {
+        .back-button {
             display: inline-block;
-            margin-top: 20px;
+            margin-bottom: 15px;
             padding: 10px 18px;
             background-color: #1976d2;
             color: white;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 6px;
+            font-weight: bold;
         }
 
-        .back:hover {
-            background-color: #125ca1;
+        .back-button:hover {
+            background-color: #125aa0;
+        }
+
+        @media (max-width: 800px) {
+            .container {
+                width: 98%;
+            }
         }
     </style>
 </head>
 
 <body>
 
-<header>
-    <h1>Hospital Management System</h1>
-    <p>Billing Management</p>
-</header>
+    <div class="navigation">
 
-<nav>
-    <a href="/">Dashboard</a>
-    <a href="/patients">Patients</a>
-    <a href="/doctors">Doctors</a>
-    <a href="/appointments">Appointments</a>
-    <a href="/medical-history">Medical History</a>
-    <a href="/laboratory">Laboratory</a>
-    <a href="/pharmacy">Pharmacy</a>
-    <a href="/billing">Billing</a>
-    <a href="/staff">Staff</a>
-    <a href="/rooms">Rooms</a>
-    <a href="/reports">Reports</a>
-</nav>
+        <a href="/">Dashboard</a>
+        <a href="/patients">Patients</a>
+        <a href="/doctors">Doctors</a>
+        <a href="/appointments">Appointments</a>
+        <a href="/medical-history">Medical History</a>
+        <a href="/laboratory">Laboratory</a>
+        <a href="/pharmacy">Pharmacy</a>
+        <a href="/billing">Billing</a>
+        <a href="/staff">Staff</a>
+        <a href="/rooms">Rooms</a>
+        <a href="/reports">Reports</a>
 
-<div class="container">
+    </div>
 
-    <h2>Billing Records</h2>
+    <div class="header">
+        <h1>🏥 Hospital Management System</h1>
+        <p>Billing Management</p>
+    </div>
 
-    <table>
+    <div class="container">
 
-        <thead>
-            <tr>
-                <th>Bill ID</th>
-                <th>Patient</th>
-                <th>Consultation</th>
-                <th>Room Charge</th>
-                <th>Laboratory</th>
-                <th>Medicine</th>
-                <th>Discount</th>
-                <th>Tax</th>
-                <th>Total Amount</th>
-                <th>Payment Status</th>
-            </tr>
-        </thead>
+        <div class="content">
 
-        <tbody>
+            <a href="/" class="back-button">← Back to Dashboard</a>
 
-            {% for bill in bills %}
+            <h2>Hospital Bills</h2>
 
-            <tr>
+            {% if bills %}
 
-                <td>{{ bill[0] }}</td>
+            <table>
 
-                <td>{{ bill[1] }}</td>
+                <thead>
+                    <tr>
+                        <th>Bill ID</th>
+                        <th>Patient</th>
+                        <th>Consultation</th>
+                        <th>Room Charge</th>
+                        <th>Laboratory</th>
+                        <th>Medicine</th>
+                        <th>Discount</th>
+                        <th>Tax</th>
+                        <th>Total Amount</th>
+                        <th>Payment Status</th>
+                        <th>Bill Date</th>
+                    </tr>
+                </thead>
 
-                <td>₹{{ "%.2f"|format(bill[2]) }}</td>
+                <tbody>
 
-                <td>₹{{ "%.2f"|format(bill[3]) }}</td>
+                    {% for bill in bills %}
 
-                <td>₹{{ "%.2f"|format(bill[4]) }}</td>
+                    <tr>
 
-                <td>₹{{ "%.2f"|format(bill[5]) }}</td>
+                        <td>{{ bill[0] }}</td>
 
-                <td>{{ "%.2f"|format(bill[6]) }}%</td>
+                        <td>{{ bill[1] }}</td>
 
-                <td>{{ "%.2f"|format(bill[7]) }}%</td>
+                        <td>
+                            ₹{{ "%.2f"|format(bill[2] or 0) }}
+                        </td>
 
-                <td>
-                    <strong>
-                        ₹{{ "%.2f"|format(bill[8]) }}
-                    </strong>
-                </td>
+                        <td>
+                            ₹{{ "%.2f"|format(bill[3] or 0) }}
+                        </td>
 
-                <td>
-                    {% if bill[9] == "Paid" %}
-                        <span class="paid">Paid</span>
-                    {% else %}
-                        <span class="pending">{{ bill[9] }}</span>
-                    {% endif %}
-                </td>
+                        <td>
+                            ₹{{ "%.2f"|format(bill[4] or 0) }}
+                        </td>
 
-            </tr>
+                        <td>
+                            ₹{{ "%.2f"|format(bill[5] or 0) }}
+                        </td>
+
+                        <td>
+                            ₹{{ "%.2f"|format(bill[6] or 0) }}
+                        </td>
+
+                        <td>
+                            ₹{{ "%.2f"|format(bill[7] or 0) }}
+                        </td>
+
+                        <td>
+                            <strong>
+                                ₹{{ "%.2f"|format(bill[8] or 0) }}
+                            </strong>
+                        </td>
+
+                        <td class="status
+                            {% if bill[9] == 'Paid' %}
+                                paid
+                            {% elif bill[9] == 'Pending' %}
+                                pending
+                            {% endif %}
+                        ">
+                            {{ bill[9] }}
+                        </td>
+
+                        <td>{{ bill[10] }}</td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
 
             {% else %}
 
-            <tr>
-                <td colspan="10" class="empty">
-                    No billing records found.
-                </td>
-            </tr>
+            <div class="no-data">
+                No bills found.
+            </div>
 
-            {% endfor %}
+            {% endif %}
 
-        </tbody>
+        </div>
 
-    </table>
-
-    <a href="/" class="back">← Back to Dashboard</a>
-
-</div>
+    </div>
 
 </body>
+
 </html>
-```
